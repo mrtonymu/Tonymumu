@@ -32,7 +32,7 @@
 > scanning portfolio...
 > loading creativity...
 > system breach detected.
-> 99% match found: certified handsome developer 😏
+> portfolio ready for exploration
 ```
 
 </div>
