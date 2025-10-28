@@ -35,6 +35,9 @@
 > 99% match found: certified handsome developer 😏
 ```
 
+### **🔍 Hidden Gems Await Discovery**
+*Some things are better experienced than explained*
+
 </div>
 
 ---
@@ -43,37 +46,38 @@
 
 <div align="center">
 
-### 🧠 **Matrix Decode Easter Egg**
-*Click my avatar → Watch the magic happen*
+### 🧠 **Interactive Elements**
+*Click around and discover the magic*
 
 ```javascript
-const matrixDecode = () => {
-  console.log("> scanning user activity...");
-  console.log("> decryption in progress...");
+const discoverMagic = () => {
+  console.log("> curiosity detected...");
+  console.log("> exploring interactive elements...");
   console.log("> system breach detected.");
-  return "certified handsome developer 😏";
+  return "surprises await the curious";
 };
 ```
 
-### 🐕 **3D Voxel Dog**
-*Interactive Three.js magic*
+### 🐕 **3D Interactive Experience**
+*Modern web meets creative technology*
 
 ```three.js
-const voxelDog = new THREE.Mesh(
-  new THREE.BoxGeometry(1, 1, 1),
-  new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-);
+const createExperience = () => {
+  const scene = new THREE.Scene();
+  const magic = new THREE.Magic();
+  return scene.add(magic);
+};
 ```
 
-### 🎭 **Easter Egg Modals**
-*Click project cards → Get surprised*
+### 🎭 **Thoughtful Interactions**
+*Every click tells a story*
 
 ```typescript
-const easterEgg = {
-  message: "Oops — this project is private 😅",
-  humor: "3 AM debugging included, free of charge",
-  cta: "Let's talk project instead"
-};
+interface UserExperience {
+  curiosity: boolean;
+  discovery: string;
+  surprise: "guaranteed";
+}
 ```
 
 </div>
@@ -112,10 +116,10 @@ const easterEgg = {
 *Clean, modern, and straight to the point*
 
 ### 🧩 **About Me**
-*Personal story with Matrix easter egg*
+*Personal story with interactive elements*
 
 ### 💼 **Projects Showcase**
-*Portfolio with interactive surprises*
+*Portfolio with thoughtful surprises*
 
 ### 🛠️ **Services**
 *What I can do for you*
@@ -183,6 +187,36 @@ with empathy, not ego.
 - **Creative + Technical** - Best of both worlds
 - **Always Learning** - Tech moves fast, good ideas last
 
+### **🔧 Development Approach**
+```typescript
+interface DevelopmentStyle {
+  empathy: "first";
+  code: "second";
+  quality: "non-negotiable";
+  creativity: "essential";
+}
+```
+
+</div>
+
+---
+
+## 🎮 **INTERACTIVE FEATURES**
+
+<div align="center">
+
+### **🔍 Discovery-Based Design**
+*The best experiences are found, not explained*
+
+### **🎨 Smooth Animations**
+*Every transition tells a story*
+
+### **📱 Responsive Magic**
+*Works beautifully everywhere*
+
+### **⚡ Performance First**
+*Fast, smooth, and delightful*
+
 </div>
 
 ---
@@ -207,6 +241,8 @@ with empathy, not ego.
 
 > *"Working with Tony is like having a tech partner who actually gets it."*
 
+> *"The attention to detail and user experience is exceptional."*
+
 </div>
 
 ---
@@ -220,6 +256,7 @@ with empathy, not ego.
 ```
 > curiosity detected.
 > Don't worry — happens a lot. 😌
+> Now go explore the actual website!
 ```
 
 **⭐ Star this repo if you found it helpful!**
