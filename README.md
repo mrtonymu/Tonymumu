@@ -35,9 +35,6 @@
 > 99% match found: certified handsome developer 😏
 ```
 
-### **🔍 Hidden Gems Await Discovery**
-*Some things are better experienced than explained*
-
 </div>
 
 ---
@@ -47,14 +44,14 @@
 <div align="center">
 
 ### 🧠 **Interactive Elements**
-*Click around and discover the magic*
+*Modern web interactions that engage users*
 
 ```javascript
-const discoverMagic = () => {
-  console.log("> curiosity detected...");
-  console.log("> exploring interactive elements...");
-  console.log("> system breach detected.");
-  return "surprises await the curious";
+const createEngagement = () => {
+  console.log("> building user experience...");
+  console.log("> optimizing interactions...");
+  console.log("> system ready.");
+  return "smooth user journey";
 };
 ```
 
@@ -70,13 +67,13 @@ const createExperience = () => {
 ```
 
 ### 🎭 **Thoughtful Interactions**
-*Every click tells a story*
+*Every interaction designed with purpose*
 
 ```typescript
 interface UserExperience {
-  curiosity: boolean;
-  discovery: string;
-  surprise: "guaranteed";
+  smooth: boolean;
+  engaging: string;
+  memorable: "by design";
 }
 ```
 
@@ -119,7 +116,7 @@ interface UserExperience {
 *Personal story with interactive elements*
 
 ### 💼 **Projects Showcase**
-*Portfolio with thoughtful surprises*
+*Portfolio with clean, professional presentation*
 
 ### 🛠️ **Services**
 *What I can do for you*
@@ -205,13 +202,13 @@ interface DevelopmentStyle {
 
 <div align="center">
 
-### **🔍 Discovery-Based Design**
-*The best experiences are found, not explained*
+### **🔍 User-Centered Design**
+*Every element serves a purpose*
 
 ### **🎨 Smooth Animations**
 *Every transition tells a story*
 
-### **📱 Responsive Magic**
+### **📱 Responsive Design**
 *Works beautifully everywhere*
 
 ### **⚡ Performance First**
@@ -254,7 +251,7 @@ interface DevelopmentStyle {
 *Made with ❤️, ☕, and a lot of 3 AM debugging sessions*
 
 ```
-> curiosity detected.
+> system ready.
 > Don't worry — happens a lot. 😌
 > Now go explore the actual website!
 ```
