@@ -1,205 +1,231 @@
-# 🚀 Tony Mumu - Portfolio Website
+<div align="center">
 
-A modern, interactive portfolio website showcasing full-stack development skills with cutting-edge web technologies.
+# 🚀 **TONY MUMU**
 
-## ✨ Live Demo
-
-🌐 **[View Live Website](https://tonymumu.vercel.app/)**
-
-## 🎯 Features
-
-### 🎨 **Interactive Design**
-- **Matrix Decode Easter Egg**: Click the avatar for a Matrix-style decoding animation
-- **3D Voxel Dog**: Interactive Three.js 3D model with smooth animations
-- **Easter Egg Modals**: Click project cards for humorous interactions
-- **Smooth Animations**: Framer Motion powered transitions throughout
-
-### 🏗️ **Modern Architecture**
-- **Next.js 16**: Latest React framework with App Router
-- **TypeScript**: Full type safety and better development experience
-- **Tailwind CSS**: Utility-first styling with custom components
-- **Function Components**: Modern React with hooks and functional programming
-
-### 📱 **Responsive & Accessible**
-- **Mobile-First**: Optimized for all device sizes
-- **Performance**: Code splitting, lazy loading, and optimization
-- **SEO Ready**: Meta tags, structured data, and semantic HTML
-- **Accessibility**: ARIA labels, keyboard navigation, and screen reader support
-
-### 🔧 **Technical Stack**
-- **Frontend**: Next.js 16, React 18, TypeScript
-- **Styling**: Tailwind CSS, Custom CSS
-- **Animations**: Framer Motion, CSS Animations
-- **3D Graphics**: Three.js, GLTF Loader
-- **Icons**: Lucide React
-- **Deployment**: Vercel
-
-## 🏗️ Project Structure
+### *Full-Stack Developer & Creative Technologist*
 
 ```
-src/
-├── app/                    # Next.js App Router
-├── components/            # UI Components
-│   ├── layout/           # Navigation, Footer, Scroll Progress
-│   ├── sections/         # Page sections (Hero, About, Projects, etc.)
-│   ├── animations/       # Interactive animations and 3D components
-│   └── ui/              # Reusable UI components
-├── hooks/                # Custom React Hooks
-├── lib/                  # Utilities and configurations
-├── types/               # TypeScript type definitions
-├── utils/               # Helper functions
-└── public/              # Static assets
+██╗   ██╗ ██████╗ ██╗  ██╗██╗   ██╗███████╗██╗     ██╗
+██║   ██║██╔═══██╗╚██╗██╔╝╚██╗ ██╔╝██╔════╝██║     ██║
+██║   ██║██║   ██║ ╚███╔╝  ╚████╔╝ █████╗  ██║     ██║
+╚██╗ ██╔╝██║   ██║ ██╔██╗   ╚██╔╝  ██╔══╝  ██║     ██║
+ ╚████╔╝ ╚██████╔╝██╔╝ ██╗   ██║   ███████╗███████╗██║
+  ╚═══╝   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚══════╝╚═╝
 ```
 
-## 🚀 Getting Started
+[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-Live_Demo-blue?style=for-the-badge&logo=vercel)](https://tonymumu.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-mrtonymu-black?style=for-the-badge&logo=github)](https://github.com/mrtonymu)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-Chat-green?style=for-the-badge&logo=whatsapp)](https://wa.link/p4qi6k)
+[![Location](https://img.shields.io/badge/📍_Kuala_Lumpur-Malaysia-red?style=for-the-badge)](https://maps.google.com/?q=Kuala+Lumpur)
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
+---
 
-### Installation
+</div>
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/mrtonymu/Tonymumu.git
-   cd Tonymumu
-   ```
+<div align="center">
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+## 🎬 **THE EXPERIENCE**
 
-3. **Run development server**
-   ```bash
-   npm run dev
-   ```
+*Where code meets creativity, and ideas become reality*
 
-4. **Open in browser**
-   ```
-   http://localhost:3000
-   ```
+```
+> scanning portfolio...
+> loading creativity...
+> system breach detected.
+> 99% match found: certified handsome developer 😏
+```
 
-### Build for Production
+</div>
 
+---
+
+## 🎨 **WHAT MAKES THIS SPECIAL**
+
+<div align="center">
+
+### 🧠 **Matrix Decode Easter Egg**
+*Click my avatar → Watch the magic happen*
+
+```javascript
+const matrixDecode = () => {
+  console.log("> scanning user activity...");
+  console.log("> decryption in progress...");
+  console.log("> system breach detected.");
+  return "certified handsome developer 😏";
+};
+```
+
+### 🐕 **3D Voxel Dog**
+*Interactive Three.js magic*
+
+```three.js
+const voxelDog = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+);
+```
+
+### 🎭 **Easter Egg Modals**
+*Click project cards → Get surprised*
+
+```typescript
+const easterEgg = {
+  message: "Oops — this project is private 😅",
+  humor: "3 AM debugging included, free of charge",
+  cta: "Let's talk project instead"
+};
+```
+
+</div>
+
+---
+
+## 🛠️ **TECH STACK**
+
+<div align="center">
+
+### **Frontend Arsenal**
+![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)
+![React](https://img.shields.io/badge/React-18-blue?style=flat-square&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=flat-square&logo=tailwind-css)
+
+### **Animation & 3D**
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-pink?style=flat-square&logo=framer)
+![Three.js](https://img.shields.io/badge/Three.js-0.160-black?style=flat-square&logo=three.js)
+![WebGL](https://img.shields.io/badge/WebGL-2.0-orange?style=flat-square&logo=webgl)
+
+### **Deployment & Tools**
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git)
+![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=flat-square&logo=visual-studio-code)
+
+</div>
+
+---
+
+## 📸 **PORTFOLIO PREVIEW**
+
+<div align="center">
+
+### 🎯 **Hero Section**
+*Clean, modern, and straight to the point*
+
+### 🧩 **About Me**
+*Personal story with Matrix easter egg*
+
+### 💼 **Projects Showcase**
+*Portfolio with interactive surprises*
+
+### 🛠️ **Services**
+*What I can do for you*
+
+### 📞 **Contact**
+*Let's make something amazing together*
+
+</div>
+
+---
+
+## 🚀 **QUICK START**
+
+<div align="center">
+
+### **Clone & Run**
+```bash
+# Clone the repository
+git clone https://github.com/mrtonymu/Tonymumu.git
+
+# Navigate to project
+cd Tonymumu
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Open http://localhost:3000
+```
+
+### **Build for Production**
 ```bash
 npm run build
 npm start
 ```
 
-## 🎮 Interactive Features
-
-### Matrix Decode Easter Egg
-- Click Tony's avatar in the About section
-- Watch the Matrix-style decoding animation
-- Multiple interaction levels with different messages
-- Final level includes CTA to contact form
-
-### Project Easter Eggs
-- Click any project card to trigger loading animation
-- Humorous modal explaining why projects are private
-- Guides users to contact form or work process
-
-### 3D Voxel Dog
-- Interactive Three.js model
-- Smooth animations and hover effects
-- Responsive design across all devices
-- Performance optimized with lazy loading
-
-## 📊 Performance
-
-- **Lighthouse Score**: 95+ across all metrics
-- **Core Web Vitals**: Optimized for excellent user experience
-- **Bundle Size**: Optimized with code splitting and lazy loading
-- **Loading Speed**: Sub-second initial page load
-
-## 🛠️ Development
-
-### Code Organization
-- **Function Components**: All components use modern React patterns
-- **Custom Hooks**: Reusable logic for scroll, window size, local storage
-- **Type Safety**: Complete TypeScript coverage
-- **Modular Design**: Clear separation of concerns
-
-### Key Components
-- **HeroSection**: Landing page with call-to-action
-- **AboutSection**: Personal story with Matrix easter egg
-- **ProjectsSection**: Portfolio showcase with easter eggs
-- **ServicesSection**: Service offerings and pricing
-- **ContactSection**: Contact form with WhatsApp integration
-
-## 🎨 Design System
-
-### Colors
-- **Primary**: Blue gradient (#3B82F6 to #8B5CF6)
-- **Secondary**: Purple accents
-- **Neutral**: Gray scale for text and backgrounds
-- **Accent**: Green for Matrix effects
-
-### Typography
-- **Font**: Inter (Google Fonts)
-- **Headings**: Bold, tight tracking
-- **Body**: Relaxed line height for readability
-- **Code**: Monospace for technical content
-
-### Animations
-- **Transitions**: 300ms ease-in-out
-- **Hover Effects**: Scale and shadow transforms
-- **Scroll Animations**: Intersection Observer based
-- **Loading States**: Skeleton screens and spinners
-
-## 📱 Responsive Breakpoints
-
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: > 1024px
-- **Large Desktop**: > 1440px
-
-## 🔒 Security
-
-- **Form Validation**: Client and server-side validation
-- **XSS Protection**: Content Security Policy headers
-- **CSRF Protection**: Built-in Next.js security
-- **Input Sanitization**: All user inputs sanitized
-
-## 📈 SEO Features
-
-- **Meta Tags**: Complete Open Graph and Twitter Card support
-- **Structured Data**: JSON-LD for rich snippets
-- **Sitemap**: Auto-generated sitemap
-- **Robots.txt**: Search engine optimization
-- **Performance**: Core Web Vitals optimization
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Contact
-
-**Tony Mumu** - Full-Stack Developer
-- **Email**: timiemarketing@gmail.com
-- **WhatsApp**: [Contact via WhatsApp](https://wa.link/p4qi6k)
-- **GitHub**: [@mrtonymu](https://github.com/mrtonymu)
-- **Portfolio**: [tonymumu.vercel.app](https://tonymumu.vercel.app)
-
-## 🙏 Acknowledgments
-
-- **Three.js** for 3D graphics capabilities
-- **Framer Motion** for smooth animations
-- **Tailwind CSS** for utility-first styling
-- **Next.js** team for the amazing framework
-- **Vercel** for seamless deployment
+</div>
 
 ---
 
-⭐ **Star this repository if you found it helpful!**
+## 💡 **ABOUT TONY**
 
-Made with ❤️ by Tony Mumu
+<div align="center">
+
+```
+From customer support to full-stack development —
+my path wasn't traditional, but it taught me to build 
+with empathy, not ego.
+```
+
+### **🎯 Core Philosophy**
+> *"Structure isn't decoration. It's what lets momentum scale."*
+
+### **🌟 What I Do**
+- **Full-Stack Development** - End-to-end solutions
+- **System Architecture** - Scalable, maintainable code
+- **Creative Problem Solving** - Turning ideas into reality
+- **Tech Consulting** - Making smart decisions
+
+### **🎨 Personal Touch**
+- **High EQ Communication** - Understanding before coding
+- **Malaysian Perspective** - Global mindset, local insights
+- **Creative + Technical** - Best of both worlds
+- **Always Learning** - Tech moves fast, good ideas last
+
+</div>
+
+---
+
+## 🤝 **LET'S CONNECT**
+
+<div align="center">
+
+### **Ready to build something amazing?**
+
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-Chat_Now-25D366?style=for-the-badge&logo=whatsapp)](https://wa.link/p4qi6k)
+[![Email](https://img.shields.io/badge/Email-timiemarketing@gmail.com-red?style=for-the-badge&logo=gmail)](mailto:timiemarketing@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow_Me-black?style=for-the-badge&logo=github)](https://github.com/mrtonymu)
+
+### **📍 Based in Kuala Lumpur, Malaysia**
+*Available for global remote projects*
+
+---
+
+### **💬 What Clients Say**
+> *"Tony doesn't just code — he understands the problem first, then builds the solution."*
+
+> *"Working with Tony is like having a tech partner who actually gets it."*
+
+</div>
+
+---
+
+<div align="center">
+
+## 🎊 **THANKS FOR CHECKING OUT MY WORK**
+
+*Made with ❤️, ☕, and a lot of 3 AM debugging sessions*
+
+```
+> curiosity detected.
+> Don't worry — happens a lot. 😌
+```
+
+**⭐ Star this repo if you found it helpful!**
+
+---
+
+*© 2025 Tony Mumu. All rights reserved.*
+
+</div>
