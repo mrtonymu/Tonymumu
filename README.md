@@ -35,6 +35,32 @@
 > portfolio ready for exploration
 ```
 
+### **🎁 Hidden Surprises Await**
+*Some things are better discovered than explained*
+
+</div>
+
+---
+
+## 📊 **BY THE NUMBERS**
+
+<div align="center">
+
+```
+┌─────────────────────────────────────────┐
+│  📈 PROJECT STATS                       │
+├─────────────────────────────────────────┤
+│  💻 Lines of Code: 4,000+              │
+│  🎨 Components: 15+                    │
+│  🚀 Performance: 95+ Lighthouse Score   │
+│  📱 Responsive: 100% Mobile-First       │
+│  ⚡ Load Time: < 2s                     │
+│  🎯 TypeScript: 100% Coverage          │
+│  🧪 Tests: Passing                     │
+│  🌟 Features: Hidden Surprises          │
+└─────────────────────────────────────────┘
+```
+
 </div>
 
 ---
@@ -44,7 +70,7 @@
 <div align="center">
 
 ### 🧠 **Interactive Elements**
-*Modern web interactions that engage users*
+*Modern web interactions that actually work*
 
 ```javascript
 const createEngagement = () => {
@@ -56,7 +82,7 @@ const createEngagement = () => {
 ```
 
 ### 🐕 **3D Interactive Experience**
-*Modern web meets creative technology*
+*Because flat websites are so 2020*
 
 ```three.js
 const createExperience = () => {
@@ -194,6 +220,13 @@ interface DevelopmentStyle {
 }
 ```
 
+### **🎪 Fun Facts**
+- 🍜 **Favorite Food**: Laksa (Malaysian comfort food)
+- ☕ **Coffee Consumption**: 3 cups/day minimum
+- 🎮 **Gaming**: Casual gamer, competitive spirit
+- 📚 **Learning**: Always exploring new tech
+- 🎨 **Design**: Function first, beauty second
+
 </div>
 
 ---
@@ -213,6 +246,9 @@ interface DevelopmentStyle {
 
 ### **⚡ Performance First**
 *Fast, smooth, and delightful*
+
+### **🎁 Hidden Surprises**
+*Because life's more fun with surprises*
 
 </div>
 
@@ -239,6 +275,8 @@ interface DevelopmentStyle {
 > *"Working with Tony is like having a tech partner who actually gets it."*
 
 > *"The attention to detail and user experience is exceptional."*
+
+> *"Finally, a developer who speaks human!"*
 
 </div>
 
