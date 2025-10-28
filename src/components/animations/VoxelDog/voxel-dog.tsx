@@ -14,7 +14,7 @@ const VoxelDog: React.FC = memo(() => {
   const [isInView, setIsInView] = useState<boolean>(false);
   const refRenderer = useRef<THREE.WebGLRenderer | null>(null);
   const refCamera = useRef<THREE.OrthographicCamera | null>(null);
-  const urlDogGLB = `${process.env.NODE_ENV === 'production' ? 'https://tonymumu.vercel.app/' : ''}/dog.glb`;
+  const urlDogGLB = '/dog.glb';
 
   // Intersection Observer for lazy loading
   useEffect(() => {
