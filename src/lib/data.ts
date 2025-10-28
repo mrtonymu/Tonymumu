@@ -177,16 +177,6 @@ export const aboutData: AboutData[] = [
     title: 'Service Goals',
     description: 'Helping solo creators and small businesses go digital without losing their authenticity. You don\'t need a big agency — just the right partner who cares about your growth.',
     details: ['Custom Web Development', 'Digital Transformation', 'Long-Term Collaboration']
-  },
-  {
-    icon: 'Heart',
-    title: 'Client First',
-    description: 'Every project starts with listening. I take time to understand what clients really need — then build solutions that feel effortless to use and meaningful to them.'
-  },
-  {
-    icon: 'Lightbulb',
-    title: 'Innovation',
-    description: 'Technology moves fast, but good ideas last. I\'m always exploring new tools and frameworks — not for the sake of trends, but to deliver smarter, more sustainable results.'
   }
 ];
 
