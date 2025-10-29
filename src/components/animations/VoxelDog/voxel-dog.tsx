@@ -93,6 +93,7 @@ const VoxelDog: React.FC = memo(() => {
       antialias: window.devicePixelRatio <= 1 && !isMobile, // 移动端禁用抗锯齿
       alpha: true,
       powerPreference: isMobile ? 'low-power' : 'high-performance', // 移动端使用低功耗模式
+      preserveDrawingBuffer: false, // 移动端禁用保留缓冲区
     });
     renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2)); // 移动端限制像素比
     renderer.setSize(scW, scH);
@@ -100,6 +101,10 @@ const VoxelDog: React.FC = memo(() => {
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.2;
     renderer.shadowMap.enabled = false; // 禁用阴影以提升性能
+    // 移动端优化：禁用对象排序以提高性能
+    if (isMobile) {
+      renderer.sortObjects = false;
+    }
     container.appendChild(renderer.domElement);
     refRenderer.current = renderer;
     const scene = new THREE.Scene();
@@ -157,12 +162,17 @@ const VoxelDog: React.FC = memo(() => {
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.autoRotate = true;
-    controls.autoRotateSpeed = 1.0; // 降低自动旋转速度
+    // 移动端降低自动旋转速度，桌面端保持流畅
+    controls.autoRotateSpeed = isMobile ? 0.5 : 1.0;
     controls.enableDamping = true;
-    controls.dampingFactor = 0.05;
+    controls.dampingFactor = isMobile ? 0.08 : 0.05; // 移动端增加阻尼以减少计算
     controls.target = target;
-    controls.enableZoom = false; // 禁用缩放以简化交互
-    controls.enablePan = false; // 禁用平移以简化交互
+    controls.enableZoom = false;
+    controls.enablePan = false;
+    // 移动端禁用交互以减少性能开销
+    if (isMobile) {
+      controls.enabled = false;
+    }
 
     // Loading 3D model
 
@@ -183,11 +193,30 @@ const VoxelDog: React.FC = memo(() => {
     let req: number | null = null;
     let frame = 0;
     let lastTime = 0;
-    const targetFPS = 60; // 提升到60FPS获得更流畅的体验
+    // 移动端降低帧率到30fps，桌面端保持60fps
+    const targetFPS = isMobile ? 30 : 60;
     const frameInterval = 1000 / targetFPS;
+    
+    // 性能检测：记录帧率
+    let fpsHistory: number[] = [];
+    let lastFpsCheck = 0;
+    const fpsCheckInterval = 1000; // 每秒检查一次
+    let qualityLevel = 1; // 1 = normal, 0 = low
+    
+    // 页面可见性检测：移动端在后台时暂停动画
+    let isPageVisible = true;
+    const handleVisibilityChange = () => {
+      isPageVisible = !document.hidden;
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     const animate = (currentTime: number = 0) => {
       req = requestAnimationFrame(animate);
+
+      // 移动端：页面不可见时跳过渲染
+      if (isMobile && !isPageVisible) {
+        return;
+      }
 
       // 帧率限制
       if (currentTime - lastTime < frameInterval) {
@@ -195,18 +224,57 @@ const VoxelDog: React.FC = memo(() => {
       }
       lastTime = currentTime;
 
-      frame = frame <= 100 ? frame + 1 : frame;
+      // 性能检测：每1秒检查一次帧率
+      if (currentTime - lastFpsCheck > fpsCheckInterval) {
+        const actualFPS = fpsHistory.length;
+        fpsHistory = [];
+        lastFpsCheck = currentTime;
+        
+        // 如果实际帧率低于目标帧率70%，降低质量
+        if (actualFPS < targetFPS * 0.7 && qualityLevel > 0) {
+          qualityLevel = 0;
+          // 降低渲染质量
+          if (renderer) {
+            renderer.setPixelRatio(0.75);
+          }
+        } else if (actualFPS >= targetFPS * 0.9 && qualityLevel < 1) {
+          qualityLevel = 1;
+          // 恢复渲染质量
+          if (renderer) {
+            renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
+          }
+        }
+      } else {
+        fpsHistory.push(1);
+      }
 
-      if (frame <= 100) {
+      // 移动端缩短相机动画时间，立即进入自动旋转
+      const maxFrame = isMobile ? 50 : 100;
+      frame = frame <= maxFrame ? frame + 1 : frame;
+
+      if (frame <= maxFrame) {
         const p = initialCameraPosition;
-        const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 20;
+        const rotSpeed = -easeOutCirc(frame / (maxFrame + 20)) * Math.PI * 20;
 
         camera.position.y = 10;
         camera.position.x = p.x * Math.cos(rotSpeed) + p.z * Math.sin(rotSpeed);
         camera.position.z = p.z * Math.cos(rotSpeed) - p.x * Math.sin(rotSpeed);
         camera.lookAt(target);
       } else {
-        controls.update();
+        if (controls.enabled) {
+          controls.update();
+        } else {
+          // 移动端禁用controls时，手动更新旋转（更轻量级）
+          const rotationSpeed = isMobile ? 0.003 : 0.01;
+          const angle = rotationSpeed;
+          const cos = Math.cos(angle);
+          const sin = Math.sin(angle);
+          const dx = camera.position.x - target.x;
+          const dz = camera.position.z - target.z;
+          camera.position.x = target.x + dx * cos - dz * sin;
+          camera.position.z = target.z + dx * sin + dz * cos;
+          camera.lookAt(target);
+        }
       }
 
       renderer.render(scene, camera);
@@ -216,6 +284,7 @@ const VoxelDog: React.FC = memo(() => {
       if (req !== null) {
         cancelAnimationFrame(req);
       }
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       renderer.domElement.remove();
       renderer.dispose();
     };
