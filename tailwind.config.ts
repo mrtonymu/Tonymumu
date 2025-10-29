@@ -8,6 +8,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '475px',
+        '3xl': '1680px',
+        // 横屏模式
+        'landscape': { 'raw': '(orientation: landscape) and (max-height: 500px)' },
+        // 平板横屏
+        'tablet-landscape': { 'raw': '(min-width: 768px) and (max-width: 1024px) and (orientation: landscape)' },
+      },
       colors: {
         // 专业蓝 - 主色调
         primary: {

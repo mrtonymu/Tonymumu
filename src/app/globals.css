@@ -26,16 +26,19 @@
   .card-hover {
     @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
     @apply hover:border-blue-200 active:scale-[0.98];
+    will-change: transform, box-shadow;
   }
   
   .btn-primary {
     @apply bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-blue-700 hover:shadow-md;
     @apply active:scale-95 active:shadow-sm;
+    will-change: transform;
   }
   
   .btn-secondary {
     @apply bg-white text-blue-600 border border-blue-600 px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:bg-blue-50;
     @apply active:scale-95 active:shadow-sm;
+    will-change: transform;
   }
   
   .text-gradient {
