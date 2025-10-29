@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Image from 'next/image';
 import { User, Award, Clock, Target, Heart, Lightbulb } from 'lucide-react';
 import MatrixDecode from '../animations/MatrixDecode';
 import { aboutData } from '../../lib/data';
@@ -86,9 +87,12 @@ export default function AboutSection() {
                        className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/25 hover:scale-110 relative"
                        onClick={handleAvatarClick}
                      >
-                       <img 
+                       <Image 
                          src="/tony-yam.jpg" 
                          alt="Tony Yam" 
+                         width={96}
+                         height={96}
+                         priority
                          className="w-full h-full object-cover rounded-full transition-all duration-300 group-hover:brightness-110 group-hover:contrast-110"
                        />
                        {/* Glowing ring effect */}

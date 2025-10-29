@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import ScrollProgress from '@/components/layout/ScrollProgress';
 import Navigation from '@/components/layout/Navigation';
 import HeroSection from '@/components/sections/HeroSection';
+import BackToTop from '@/components/ui/BackToTop';
 
 // Lazy load heavy components
 const ExpertiseSection = dynamic(() => import('@/components/sections/ExpertiseSection'), {
@@ -59,6 +60,7 @@ export default function Home() {
       </div>
       
       <Footer />
+      <BackToTop />
     </main>
   );
 }

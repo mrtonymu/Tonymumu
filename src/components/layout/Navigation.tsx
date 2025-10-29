@@ -16,11 +16,39 @@ const navigationItems = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      
+      // 检测当前活跃的section
+      const sections = navigationItems.map(item => ({
+        id: item.href.substring(1), // 移除 #
+        href: item.href
+      }));
+      
+      const scrollPosition = window.scrollY + 150; // 偏移量，提前触发
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.querySelector(sections[i].href);
+        if (section) {
+          const offsetTop = section.getBoundingClientRect().top + window.scrollY;
+          if (scrollPosition >= offsetTop) {
+            setActiveSection(sections[i].href);
+            break;
+          }
+        }
+      }
+      
+      // 如果滚动到顶部，设置home为活跃
+      if (window.scrollY < 100) {
+        setActiveSection('#home');
+      }
     };
+
+    // 初始检查
+    handleScroll();
 
     // Throttle scroll events for better performance
     let ticking = false;
@@ -83,16 +111,27 @@ export default function Navigation() {
               className="hidden md:block"
             >
               <div className="flex items-center space-x-8">
-                {navigationItems.map((item, index) => (
-                  <button
-                    key={item.name}
-                    onClick={() => scrollToSection(item.href)}
-                    className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 relative group"
-                  >
-                    {item.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
-                  </button>
-                ))}
+                {navigationItems.map((item, index) => {
+                  const isActive = activeSection === item.href || (item.href === '#home' && activeSection === '');
+                  return (
+                    <button
+                      key={item.name}
+                      onClick={() => scrollToSection(item.href)}
+                      className={`font-medium transition-colors duration-200 relative group ${
+                        isActive 
+                          ? 'text-blue-600' 
+                          : 'text-gray-700 hover:text-blue-600'
+                      }`}
+                    >
+                      {item.name}
+                      <span 
+                        className={`absolute -bottom-1 left-0 h-0.5 bg-blue-600 transition-all duration-200 ${
+                          isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                        }`}
+                      ></span>
+                    </button>
+                  );
+                })}
               </div>
             </motion.div>
 
@@ -141,18 +180,25 @@ export default function Navigation() {
       >
         <div className="container py-4">
           <div className="space-y-2">
-            {navigationItems.map((item, index) => (
-              <motion.button
-                key={item.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                onClick={() => scrollToSection(item.href)}
-                className="w-full text-left px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
-              >
-                {item.name}
-              </motion.button>
-            ))}
+            {navigationItems.map((item, index) => {
+              const isActive = activeSection === item.href || (item.href === '#home' && activeSection === '');
+              return (
+                <motion.button
+                  key={item.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  onClick={() => scrollToSection(item.href)}
+                  className={`w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 ${
+                    isActive 
+                      ? 'text-blue-600 bg-blue-50 font-medium' 
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  {item.name}
+                </motion.button>
+              );
+            })}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
