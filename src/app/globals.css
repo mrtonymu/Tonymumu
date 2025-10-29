@@ -69,6 +69,38 @@
     @apply transform -translate-y-2 scale-110;
     animation: rocket-launch 0.6s ease-out;
   }
+  
+  /* CTA Button subtle pulse animation */
+  .cta-primary {
+    @apply relative;
+    animation: subtle-pulse 3s ease-in-out infinite;
+  }
+  
+  .cta-primary::before {
+    content: '';
+    @apply absolute inset-0 rounded-lg;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+@keyframes subtle-pulse {
+  0%, 100% {
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+  }
+  50% {
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes rocket-launch {

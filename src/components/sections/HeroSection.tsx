@@ -40,7 +40,7 @@ export default function HeroSection() {
           >
                   <a
                     href="#start-project"
-                    className="btn-primary inline-flex items-center gap-2 transform hover:scale-105 transition-all duration-300 hover:shadow-xl"
+                    className="btn-primary cta-primary inline-flex items-center gap-2 transform hover:scale-105 transition-all duration-300 hover:shadow-xl"
                   >
                     <MessageCircle className="w-5 h-5" />
                     Let's Work Together
