@@ -89,13 +89,20 @@ const VoxelDog: React.FC = memo(() => {
     // 检测移动端
     const isMobile = scW < 768;
 
+    // 移动端像素比策略：平衡清晰度和性能
+    // 使用 1.5-1.75 之间的值，而不是固定的 1
+    const basePixelRatio = isMobile 
+      ? Math.min(window.devicePixelRatio, 1.75) // 移动端限制在 1.75，保持清晰度
+      : Math.min(window.devicePixelRatio, 2);   // 桌面端限制在 2
+    
     const renderer = new THREE.WebGLRenderer({
-      antialias: window.devicePixelRatio <= 1 && !isMobile, // 移动端禁用抗锯齿
+      // 像素比 <= 1.5 时启用抗锯齿，不会太影响性能
+      antialias: basePixelRatio <= 1.5,
       alpha: true,
-      powerPreference: isMobile ? 'low-power' : 'high-performance', // 移动端使用低功耗模式
-      preserveDrawingBuffer: false, // 移动端禁用保留缓冲区
+      powerPreference: isMobile ? 'low-power' : 'high-performance',
+      preserveDrawingBuffer: false,
     });
-    renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2)); // 移动端限制像素比
+    renderer.setPixelRatio(basePixelRatio);
     renderer.setSize(scW, scH);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -201,7 +208,8 @@ const VoxelDog: React.FC = memo(() => {
     let fpsHistory: number[] = [];
     let lastFpsCheck = 0;
     const fpsCheckInterval = 1000; // 每秒检查一次
-    let qualityLevel = 1; // 1 = normal, 0 = low
+    let qualityLevel = 1; // 2 = high, 1 = normal, 0 = low
+    let currentPixelRatio = basePixelRatio; // 当前实际像素比
     
     // 页面可见性检测：移动端在后台时暂停动画
     let isPageVisible = true;
@@ -230,18 +238,30 @@ const VoxelDog: React.FC = memo(() => {
         fpsHistory = [];
         lastFpsCheck = currentTime;
         
-        // 如果实际帧率低于目标帧率70%，降低质量
+        // 动态调整像素比，保持清晰度的同时优化性能
         if (actualFPS < targetFPS * 0.7 && qualityLevel > 0) {
+          // 性能不足：逐步降低像素比
           qualityLevel = 0;
-          // 降低渲染质量
-          if (renderer) {
-            renderer.setPixelRatio(0.75);
+          const newPixelRatio = Math.max(1.0, currentPixelRatio - 0.25); // 降低0.25，但不低于1.0
+          if (newPixelRatio !== currentPixelRatio) {
+            currentPixelRatio = newPixelRatio;
+            renderer.setPixelRatio(currentPixelRatio);
           }
-        } else if (actualFPS >= targetFPS * 0.9 && qualityLevel < 1) {
+        } else if (actualFPS >= targetFPS * 0.95 && qualityLevel < 2) {
+          // 性能良好：尝试提升像素比
+          qualityLevel = 2;
+          const newPixelRatio = Math.min(basePixelRatio, currentPixelRatio + 0.25); // 提升0.25，但不高于初始值
+          if (newPixelRatio !== currentPixelRatio && newPixelRatio <= basePixelRatio) {
+            currentPixelRatio = newPixelRatio;
+            renderer.setPixelRatio(currentPixelRatio);
+          }
+        } else if (actualFPS >= targetFPS * 0.8 && qualityLevel < 1) {
+          // 性能恢复：回到正常水平
           qualityLevel = 1;
-          // 恢复渲染质量
-          if (renderer) {
-            renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
+          const newPixelRatio = Math.min(basePixelRatio, basePixelRatio * 0.9); // 恢复到初始值的90%
+          if (newPixelRatio !== currentPixelRatio) {
+            currentPixelRatio = newPixelRatio;
+            renderer.setPixelRatio(currentPixelRatio);
           }
         }
       } else {
