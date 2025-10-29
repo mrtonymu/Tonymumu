@@ -25,6 +25,20 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  
+  // 字段级别的验证错误
+  const [fieldErrors, setFieldErrors] = useState<{
+    name?: string;
+    email?: string;
+    message?: string;
+  }>({});
+  
+  // 字段是否被触碰过（用于显示错误）
+  const [touched, setTouched] = useState<{
+    name?: boolean;
+    email?: boolean;
+    message?: boolean;
+  }>({});
 
   // 清理 URL 参数
   useEffect(() => {
@@ -37,29 +51,95 @@ export default function ContactSection() {
     }
   }, []);
 
+  // 验证单个字段
+  const validateField = (name: string, value: string): string | undefined => {
+    switch (name) {
+      case 'name':
+        if (!value.trim()) {
+          return 'Name is required';
+        }
+        if (value.trim().length < 2) {
+          return 'Name must be at least 2 characters';
+        }
+        break;
+      case 'email':
+        if (!value.trim()) {
+          return 'Email is required';
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+          return 'Please enter a valid email address';
+        }
+        break;
+      case 'message':
+        if (!value.trim()) {
+          return 'Project description is required';
+        }
+        if (value.trim().length < 10) {
+          return 'Please provide more details (at least 10 characters)';
+        }
+        break;
+    }
+    return undefined;
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
+    
+    // 实时验证
+    if (touched[name as keyof typeof touched]) {
+      const error = validateField(name, value);
+      setFieldErrors(prev => ({
+        ...prev,
+        [name]: error
+      }));
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setTouched(prev => ({
+      ...prev,
+      [name]: true
+    }));
+    
+    // 验证字段
+    const error = validateField(name, value);
+    setFieldErrors(prev => ({
+      ...prev,
+      [name]: error
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // 防止默认表单提交行为
+    e.preventDefault();
     
-    // 客户端验证
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+    // 标记所有字段为已触碰
+    setTouched({
+      name: true,
+      email: true,
+      message: true
+    });
+    
+    // 验证所有字段
+    const nameError = validateField('name', formData.name);
+    const emailError = validateField('email', formData.email);
+    const messageError = validateField('message', formData.message);
+    
+    setFieldErrors({
+      name: nameError,
+      email: emailError,
+      message: messageError
+    });
+    
+    // 如果有错误，停止提交
+    if (nameError || emailError || messageError) {
       setSubmitStatus('error');
-      setErrorMessage('Please fill in all required fields.');
-      return;
-    }
-
-    // 邮箱格式验证
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setSubmitStatus('error');
-      setErrorMessage('Please enter a valid email address.');
+      setErrorMessage('Please fix the errors below.');
       return;
     }
 
@@ -80,14 +160,19 @@ export default function ContactSection() {
 
       if (response.ok) {
         setSubmitStatus('success');
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          project: '',
-          budget: '',
-          message: ''
-        });
+        setFieldErrors({});
+        setTouched({});
+        
+        // Reset form after success animation
+        setTimeout(() => {
+          setFormData({
+            name: '',
+            email: '',
+            project: '',
+            budget: '',
+            message: ''
+          });
+        }, 2000);
         
         // 清理 URL 参数
         if (typeof window !== 'undefined') {
@@ -99,7 +184,7 @@ export default function ContactSection() {
           // 延迟打开 WhatsApp，让用户看到成功消息
           setTimeout(() => {
             window.open(result.whatsappUrl, '_blank');
-          }, 1000);
+          }, 1500);
         }
       } else {
         setSubmitStatus('error');
@@ -213,12 +298,17 @@ export default function ContactSection() {
               <form className="space-y-6" onSubmit={handleSubmit} method="POST">
                 {/* Success Message */}
                 {submitStatus === 'success' && (
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                    <p className="text-green-800 text-sm">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: -10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 0.3, type: "spring" }}
+                    className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3"
+                  >
+                    <CheckCircle className="w-5 h-5 text-green-600 animate-pulse" />
+                    <p className="text-green-800 text-sm font-medium">
                       Form submitted successfully! WhatsApp will open in a moment with your message.
                     </p>
-                  </div>
+                  </motion.div>
                 )}
 
                 {/* Error Message */}
@@ -242,10 +332,25 @@ export default function ContactSection() {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
+                      onBlur={handleBlur}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 ${
+                        fieldErrors.name && touched.name
+                          ? 'border-red-300 focus:ring-red-500 bg-red-50'
+                          : 'border-gray-300 focus:ring-blue-500 bg-white'
+                      }`}
                       placeholder="Your name"
                     />
+                    {fieldErrors.name && touched.name && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-1 text-sm text-red-600 flex items-center gap-1"
+                      >
+                        <AlertCircle className="w-4 h-4" />
+                        {fieldErrors.name}
+                      </motion.p>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -257,10 +362,25 @@ export default function ContactSection() {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
+                      onBlur={handleBlur}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 ${
+                        fieldErrors.email && touched.email
+                          ? 'border-red-300 focus:ring-red-500 bg-red-50'
+                          : 'border-gray-300 focus:ring-blue-500 bg-white'
+                      }`}
                       placeholder="Your best contact email"
                     />
+                    {fieldErrors.email && touched.email && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-1 text-sm text-red-600 flex items-center gap-1"
+                      >
+                        <AlertCircle className="w-4 h-4" />
+                        {fieldErrors.email}
+                      </motion.p>
+                    )}
                   </div>
                 </div>
 
@@ -315,11 +435,26 @@ export default function ContactSection() {
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
                     rows={4}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:border-transparent transition-all duration-200 resize-none ${
+                      fieldErrors.message && touched.message
+                        ? 'border-red-300 focus:ring-red-500 bg-red-50'
+                        : 'border-gray-300 focus:ring-blue-500 bg-white'
+                    }`}
                     placeholder="Tell me more about your project — goals, features, or any ideas you already have…"
                   ></textarea>
+                  {fieldErrors.message && touched.message && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-1 text-sm text-red-600 flex items-center gap-1"
+                    >
+                      <AlertCircle className="w-4 h-4" />
+                      {fieldErrors.message}
+                    </motion.p>
+                  )}
                 </div>
 
                 <div className="flex items-start gap-3">
